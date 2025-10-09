@@ -1,0 +1,43 @@
+# IntelliJ IDEA project files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Build output directories
+/out/
+build/
+target/
+classes/
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+
+# Maven
+log/
+!.mvn/wrapper/maven-wrapper.jar
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment & temporary files
+*.env
+*.tmp
+*.swp
+*.swo
+
+# Java-specific
+*.class
+
+# JetBrains Rider / Android Studio related
+.cxx/
+captures/
+
+# Other IDEs
+.vscode/
