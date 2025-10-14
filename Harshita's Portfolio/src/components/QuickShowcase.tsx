@@ -4,79 +4,95 @@ import { Badge } from './ui/badge';
 import { ExternalLink, Eye } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { toast } from "sonner@2.0.3";
+import { caseStudies } from './CaseStudyDetails';
 import setuOamPing from '../assets/projects/setu-oam-ping.jpg';
+import reportiv from '../assets/projects/reportiv-dashboard.png';
+import shiva from '../assets/projects/Shiva.png';
+import oktaui from '../assets/projects/oktaui.png';
+import envision from '../assets/projects/envision.png';
 
 const showcaseProjects = [
   {
-    id: 1,
-    title: "Envision Enterprise Platform",
-    category: "Enterprise SaaS",
-    image: "https://images.unsplash.com/photo-1659035260002-11d486d6e9f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBhcHBsaWNhdGlvbiUyMGludGVyZmFjZXxlbnwxfHx8fDE3NTgxNzI5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Enterprise SaaS dashboard showcasing advanced UI/UX design principles",
-    tags: ["SaaS", "Dashboard"],
-    problem: "Enterprise administrators struggled with fragmented dashboards and disjointed data views across multiple IAM and application monitoring tools. The lack of a unified visualization platform made it difficult to gain actionable insights, compare performance metrics, or identify cross-system dependencies quickly.",
-    process: "Led stakeholder workshops to understand user journeys, business goals, and pain points across security, operations, and management teams. Created information architecture maps and low-fidelity prototypes focusing on data clarity, scalability, and consistency. Iteratively tested wireframes with users to refine navigation and interaction models for complex IAM datasets.",
-    solution: "Designed Envision, a modular enterprise platform that consolidates IAM analytics, system health, and application insights into one cohesive interface. Built a clean, role-based dashboard system emphasizing readability, responsiveness, and real-time visualization. Applied a minimalist design system with consistent iconography, typography, and color logic to enhance usability and reduce cognitive load.",
-    impact: "Increased user efficiency in monitoring and analysis tasks by 65%, reduced dashboard switching time by 50%, improved data comprehension across roles, and established a scalable design framework adaptable to future enterprise modules — positioning Envision as a unified command center for enterprise visibility.",
-    color: "from-orange-500 to-red-600"
-  },
-  {
-    id: 2,
-    title: "ReportIV - Forecasting Analytics",
-    category: "Data Visualization",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODE4NjE5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Real-time migration progress tracking and assessment visualization",
-    tags: ["Migration", "Analytics"],
-    problem: "Organizations needed to predict resource access patterns and identify anomalies before they became security risks. Existing monitoring was reactive rather than predictive, missing critical trends.",
-    process: "Designed Grafana dashboards for forecasting resource access trends. Built predictive models using VAR and LSTM algorithms to forecast access anomalies and patterns. Focused on UI flows for presenting complex data science outputs clearly to stakeholders.",
-    solution: "Created intuitive forecasting dashboard with predictive modeling integration, anomaly detection alerts, trend visualization, and automated reporting. Made complex ML outputs accessible to non-technical stakeholders through clear visual storytelling.",
-    impact: "Predicted 85% of access anomalies before they occurred, reduced security incidents by 40%, enabled proactive resource planning, and improved compliance reporting accuracy by 60%.",
-    color: "from-emerald-500 to-teal-600"
-  },
-  {
-    id: 3,
-    title: "Okta Mobile App Concept",
-    category: "Mobile App",
-    image: "https://images.unsplash.com/photo-1756576357697-13dfc5fff61c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBpbnRlcmZhY2UlMjBkZXNpZ258ZW58MXx8fHwxNzU4MjQ5NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Mobile-first secure login flows with biometric authentication",
-    tags: ["Mobile", "Security"],
-    problem: "The legacy banking interfaces were cluttered, inconsistent, and lacked trust indicators. Customers faced friction during login, MFA, and onboarding flows, leading to frustration, drop-offs, and reduced engagement.",
-    process: "Conducted user journey mapping and heuristic evaluation of existing flows. Defined personas for retail and corporate customers to tailor experiences. Focused on accessibility, minimalism, and emotional design to instill trust while aligning with banking security requirements.",
-    solution: "Designed a modern, user-centric banking app powered by Okta Customer Identity Management (CIM). Created seamless authentication experiences with clean UI, adaptive MFA screens, and contextual feedback. The interface emphasized trust through micro-interactions, clear messaging, and visual consistency across devices.",
-    impact: "Reduced user drop-offs during login and onboarding by 40%, enhanced customer trust with transparent security flows, improved task completion rates by 55%, and elevated the overall digital experience — making secure banking feel effortless.",
-    color: "from-blue-500 to-indigo-600"
+          id: 1,
+          title: 'Migration Framework',
+          category: 'Identity & Access Management',
+          description: 'Enterprise-level identity and access management framework migration from Oracle Access Manager to Ping Identity.',
+          image: setuOamPing,
+          tags: ['Enterprise IAM', 'Migration', 'Security'],
+          year: '2025',
+          duration: '1 year',
+          problem: "Legacy OAM systems needed migration to modern Ping infrastructure with zero downtime. Teams lacked visibility into migration progress, mapping accuracy, and assessment results, creating risks and delays.",
+                                  process: "Designed IAM dashboards for migration visibility including reports, mappings, and assessments. Created UI/UX presentations and videos for stakeholder alignment. Developed backend connectors (DB, API, CLI utilities) to support seamless migration workflows.",
+                                  solution: "Delivered comprehensive migration dashboard with real-time progress tracking, automated mapping validation, assessment reporting, and stakeholder communication tools. Integrated CLI utilities with intuitive UI for technical teams.",
+                                  impact: "Reduced migration timeline by 90%, eliminated manual mapping errors, improved stakeholder communication through visual reports, and achieved 99.9% uptime during transition period.",
+                                  color: "from-blue-500 to-indigo-600"
+        },
+        {
+          id: 2,
+          title: 'Resource Prediction Dashboards',
+          category: 'Data Visualization',
+          description: 'Advanced analytics dashboards for financial forecasting with machine learning integration.',
+          image: reportiv,
+          tags: ['Analytics', 'ML Integration', 'Finance'],
+          year: '2024',
+          duration: '2 months',
+                                  problem: "Organizations needed to predict resource access patterns and identify anomalies before they became security risks. Existing monitoring was reactive rather than predictive, missing critical trends.",
+                                  process: "Designed Grafana dashboards for forecasting resource access trends. Built predictive models using VAR and LSTM algorithms to forecast access anomalies and patterns. Focused on UI flows for presenting complex data science outputs clearly to stakeholders.",
+                                  solution: "Created intuitive forecasting dashboard with predictive modeling integration, anomaly detection alerts, trend visualization, and automated reporting. Made complex ML outputs accessible to non-technical stakeholders through clear visual storytelling.",
+                                  impact: "Predicted 85% of access anomalies before they occurred, reduced security incidents by 40%, enabled proactive resource planning, and improved compliance reporting accuracy by 60%.",
+                                  color: "from-emerald-500 to-teal-600"
+        },
+        {
+          id: 3,
+          title: 'Virtual IAM Assistant',
+          category: ['AI', 'UX Design'],
+          description: 'AI-powered virtual assistant for identity and access management with natural language processing.',
+          image: shiva,
+          tags: ['AI Assistant', 'NLP', 'Chatbot UI'],
+          year: '2024',
+          duration: '1 month',
+          problem: "Complex IAM processes required extensive training and expertise. Users struggled with access requests, troubleshooting, and understanding security policies, leading to delays and support bottlenecks.",
+              process: "Designed conversational UI for virtual IAM assistant. Analyzed common user queries and pain points. Created intuitive chat flows that guide users through complex access management tasks with contextual help and automated suggestions.",
+              solution: "Developed virtual IAM assistant's conversational interface with natural language processing for IAM queries, guided workflows for access requests, automated troubleshooting suggestions, and integration with existing IAM systems for seamless task execution.",
+              impact: "Reduced support ticket volume by 65%, decreased average resolution time from 2 days to 30 minutes, improved user satisfaction scores to 4.8/5, and enabled 24/7 automated IAM support.",
+              color: "from-purple-500 to-pink-600"
+        },
+        {
+          id: 4,
+          title: 'Mobile Banking App',
+          category: 'Mobile UX',
+          description: 'User-centered design for next-generation mobile banking experience.',
+          image: oktaui,
+          tags: ['Mobile UX', 'FinTech', 'User Research'],
+          year: '2024',
+          duration: '3 months',
+                                  problem: "The legacy banking interfaces were cluttered, inconsistent, and lacked trust indicators. Customers faced friction during login, MFA, and onboarding flows, leading to frustration, drop-offs, and reduced engagement.",
+                                  process: "Conducted user journey mapping and heuristic evaluation of existing flows. Defined personas for retail and corporate customers to tailor experiences. Focused on accessibility, minimalism, and emotional design to instill trust while aligning with banking security requirements.",
+                                  solution: "Designed a modern, user-centric banking app powered by Customer Identity & Access Management (CIAM). Created seamless authentication experiences with clean UI, adaptive MFA screens, and contextual feedback. The interface emphasized trust through micro-interactions, clear messaging, and visual consistency across devices.",
+                                  impact: "Reduced user drop-offs during login and onboarding by 40%, enhanced customer trust with transparent security flows, improved task completion rates by 55%, and elevated the overall digital experience — making secure banking feel effortless.",
+                                  color: "from-blue-500 to-indigo-600"
+        },
+        {
+          id: 5,
+          title: 'Saas Enterprise Platform',
+          category: 'Web Design',
+          description: 'Modern e-commerce platform with focus on accessibility and conversion optimization.',
+          image: envision,
+          tags: ['E-commerce', 'Accessibility', 'Conversion'],
+          year: '2024',
+          duration: '5 months',
+                                  problem: "Enterprise administrators struggled with fragmented dashboards and disjointed data views across multiple IAM and application monitoring tools. The lack of a unified visualization platform made it difficult to gain actionable insights, compare performance metrics, or identify cross-system dependencies quickly.",
+                                  process: "Led stakeholder workshops to understand user journeys, business goals, and pain points across security, operations, and management teams. Created information architecture maps and low-fidelity prototypes focusing on data clarity, scalability, and consistency. Iteratively tested wireframes with users to refine navigation and interaction models for complex IAM datasets.",
+                                  solution: "Designed a modular enterprise platform that consolidates IAM analytics, system health, and application insights into one cohesive interface. Built a clean, role-based dashboard system emphasizing readability, responsiveness, and real-time visualization. Applied a minimalist design system with consistent iconography, typography, and color logic to enhance usability and reduce cognitive load.",
+                                  impact: "Increased user efficiency in monitoring and analysis tasks by 65%, reduced dashboard switching time by 50%, improved data comprehension across roles, and established a scalable design framework adaptable to future enterprise modules — positioning it as a unified command center for enterprise visibility.",
+                                  color: "from-orange-500 to-red-600"
 
-  },
-  {
-    id: 4,
-    title: "SETU Migration Portal",
-    category: "Enterprise IAM",
-    image: setuOamPing,
-    description: "OAM to Ping migration interface with comprehensive reporting",
-    tags: ["IAM", "Migration"],
-    problem: "Legacy OAM systems needed migration to modern Ping infrastructure with zero downtime. Teams lacked visibility into migration progress, mapping accuracy, and assessment results, creating risks and delays.",
-    process: "Designed IAM dashboards for migration visibility including reports, mappings, and assessments. Created UI/UX presentations and videos for stakeholder alignment. Developed backend connectors (DB, API, CLI utilities) to support seamless migration workflows.",
-    solution: "Delivered comprehensive migration dashboard with real-time progress tracking, automated mapping validation, assessment reporting, and stakeholder communication tools. Integrated CLI utilities with intuitive UI for technical teams.",
-    impact: "Reduced migration timeline by 50%, eliminated manual mapping errors, improved stakeholder communication through visual reports, and achieved 99.9% uptime during transition period.",
-    color: "from-blue-500 to-indigo-600"
-  },
-  {
-    id: 5,
-    title: "SHIVA AI Assistant",
-    category: "AI Interface",
-    image: "https://images.unsplash.com/photo-1744782211816-c5224434614f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwdmlzdWFsaXphdGlvbiUyMGNoYXJ0c3xlbnwxfHx8fDE3NTgyNDI2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Virtual IAM assistant UI for simplified access management workflows",
-    tags: ["AI", "IAM"],
-    problem: "Complex IAM processes required extensive training and expertise. Users struggled with access requests, troubleshooting, and understanding security policies, leading to delays and support bottlenecks.",
-    process: "Designed conversational UI for virtual IAM assistant. Analyzed common user queries and pain points. Created intuitive chat flows that guide users through complex access management tasks with contextual help and automated suggestions.",
-    solution: "Developed SHIVA's conversational interface with natural language processing for IAM queries, guided workflows for access requests, automated troubleshooting suggestions, and integration with existing IAM systems for seamless task execution.",
-    impact: "Reduced support ticket volume by 65%, decreased average resolution time from 2 days to 30 minutes, improved user satisfaction scores to 4.8/5, and enabled 24/7 automated IAM support.",
-    color: "from-purple-500 to-pink-600"
-  }
+        }
 ];
 
-// Mapping function: QuickShowcase project → CaseStudy
 function mapProjectToCaseStudy(project: any) {
+  const matchedStudy = caseStudies.find(cs => cs.id === project.id);
+
   return {
     id: project.id,
     title: project.title,
@@ -88,7 +104,8 @@ function mapProjectToCaseStudy(project: any) {
     process: project.process,
     solution: project.solution,
     impact: project.impact,
-    color: "from-blue-500 to-indigo-600"
+    color: project.color || "from-blue-500 to-indigo-600",
+    visuals: matchedStudy?.visuals || [] // ✅ Add visuals safely
   };
 }
 

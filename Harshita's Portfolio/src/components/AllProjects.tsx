@@ -126,36 +126,6 @@ export function AllProjects({ onBack, onViewDetails }: AllProjectsProps) {
                                 impact: "Increased user efficiency in monitoring and analysis tasks by 65%, reduced dashboard switching time by 50%, improved data comprehension across roles, and established a scalable design framework adaptable to future enterprise modules — positioning it as a unified command center for enterprise visibility.",
                                 color: "from-orange-500 to-red-600"
 
-      },
-      {
-        id: 6,
-        title: 'Healthcare Portal',
-        category: 'Healthcare UX',
-        description: 'Patient-centered healthcare portal with telemedicine integration.',
-        image: 'https://images.unsplash.com/photo-1631815589968-fdb09131aca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwYXBwJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODI0OTQ2M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-        tags: ['Healthcare', 'Telemedicine', 'Accessibility'],
-        year: '2023',
-        duration: '6 months',
-        problem: "Patients and healthcare providers faced fragmented communication, confusing navigation, and limited access to medical records. The absence of a unified, accessible digital platform led to appointment delays, poor engagement, and reduced trust in virtual care systems.",
-        process: "Researched patient and clinician workflows through interviews and journey mapping to identify friction points. Designed personas for different patient groups, including elderly and differently-abled users, to ensure inclusive accessibility. Focused on simplifying appointment booking, consultation flows, and medical data visualization while ensuring compliance with healthcare privacy standards (HIPAA-like guidelines).",
-        solution: "Designed a patient-centered healthcare portal integrating telemedicine, digital prescriptions, and secure record management. Created intuitive dashboards for patients and doctors, optimized for both desktop and mobile. Implemented accessibility-first UI with large touch targets, clear color contrast, and guided interactions to simplify navigation and improve confidence in digital healthcare.",
-        impact: "Enhanced patient engagement and appointment completion rates by 50%, reduced onboarding time for new users by 40%, and improved satisfaction scores due to clearer navigation and inclusive accessibility design — transforming digital healthcare into a more empathetic, human-centered experience.",
-        color: "from-orange-500 to-red-600"
-      },
-      {
-        id: 7,
-        title: 'Learning Management System',
-        category: 'EdTech',
-        description: 'Modern LMS interface design with gamification and progress tracking.',
-        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlZHVjYXRpb24lMjBhcHAlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4MjQ5NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-        tags: ['EdTech', 'Gamification', 'Learning'],
-        year: '2023',
-        duration: '4 months',
-        problem: "Students and instructors found existing LMS platforms overwhelming, with poor progress visibility and low motivation to complete courses. The interface lacked engagement, structure, and intuitive flow — leading to reduced participation and completion rates.",
-        process: "Conducted usability tests with students and educators to understand engagement barriers. Designed wireframes emphasizing simplicity and flow, followed by UI explorations that incorporated visual hierarchy, feedback loops, and reward mechanics. Focused on integrating gamification principles — such as progress tracking, badges, and leaderboards — without cluttering the experience.",
-        solution: "Developed a modern Learning Management System interface that combined clean design with gamified learning. Designed intuitive dashboards showing progress visually, introduced achievement badges and progress rings, and streamlined course navigation for faster access to lessons and assessments.",
-        impact: "Increased learner engagement by 65%, boosted course completion rates by 45%, and improved platform usability scores through simplified interactions and motivating visual feedback — turning learning into an enjoyable, goal-driven experience.",
-        color: "from-orange-500 to-red-600"
       }
     ];
 
