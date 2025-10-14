@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Sun, Moon, Download } from 'lucide-react';
+import { Menu, X, Sun, Download } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from '../context/ThemeContext';
 import { toast } from "sonner";
@@ -97,14 +97,7 @@ export function Header({ onViewAllProjects, onViewPrivacyPolicy, onViewTermsOfSe
 
             {/* Action Buttons */}
             <div className="flex items-center space-x-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleTheme}
-                className="hover:bg-accent"
-              >
-                {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-              </Button>
+
 
               <Button
                 variant="outline"
@@ -120,14 +113,7 @@ export function Header({ onViewAllProjects, onViewPrivacyPolicy, onViewTermsOfSe
 
           {/* Mobile Menu Button & Actions */}
           <div className="md:hidden flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-              className="hover:bg-accent"
-            >
-              {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-            </Button>
+
 
             <button
               className="p-2"

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import Me from '../assets/about/me.jpg';
 
 export function About() {
   return (
@@ -28,7 +29,7 @@ export function About() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl transform rotate-3"></div>
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzU4MTY5NzA3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src= {Me}
                 alt="Professional workspace"
                 className="relative rounded-2xl shadow-xl w-full h-96 object-cover"
               />

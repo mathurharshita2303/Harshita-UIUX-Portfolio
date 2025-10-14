@@ -10,7 +10,7 @@ const app = express();
 
 // CORS setup – allow only frontend origin
 app.use(cors({
-  origin: 'http://localhost:3002', // frontend URL
+  origin: '*', // frontend URL
   methods: ['GET','POST','PUT','DELETE'],
   credentials: true
 }));

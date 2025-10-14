@@ -111,7 +111,7 @@ export default function App() {
           {currentPage === 'all-projects' && (
             <AllProjects
               onBack={handleBackToHome}
-              onViewDemo={handleViewDemo}
+              onViewDetails={handleViewCaseStudy}
             />
           )}
 

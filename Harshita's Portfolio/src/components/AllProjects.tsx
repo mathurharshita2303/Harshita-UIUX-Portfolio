@@ -8,107 +8,156 @@ import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useState } from 'react';
 import { toast } from "sonner@2.0.3";
+import { caseStudies } from './CaseStudyDetails';
+import setuOamPing from '../assets/projects/setu-oam-ping.jpg';
+import reportiv from '../assets/projects/reportiv-dashboard.png';
+import shiva from '../assets/projects/Shiva.png';
+import oktaui from '../assets/projects/oktaui.png';
+import envision from '../assets/projects/envision.png';
+
+function mapProjectToCaseStudy(project: any) {
+  const matchedStudy = caseStudies.find(cs => cs.id === project.id);
+
+  return {
+    id: project.id,
+    title: project.title,
+    subtitle: project.category,
+    description: project.description,
+    image: project.image,
+    tags: project.tags,
+    problem: project.problem,
+    process: project.process,
+    solution: project.solution,
+    impact: project.impact,
+    color: project.color || "from-blue-500 to-indigo-600",
+    visuals: matchedStudy?.visuals || [] // ✅ Add visuals safely
+  };
+}
+
+
+interface allProjects {
+  onBack: () => void;
+  onViewDetails: (caseStudy: any) => void;
+}
 
 interface AllProjectsProps {
   onBack: () => void;
-  onViewDemo: (project: any) => void;
+  onViewDetails: (caseStudy: any) => void;
 }
 
-export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
+export function AllProjects({ onBack, onViewDetails }: AllProjectsProps) {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
 
   const allProjects = [
-    {
-      id: 1,
-      title: 'SETU - OAM to Ping Migration',
-      category: 'IAM Framework',
-      description: 'Enterprise-level identity and access management framework migration from Oracle Access Manager to Ping Identity.',
-      image: 'https://images.unsplash.com/photo-1732203971761-e9d4a6f5e93f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkYXNoYm9hcmQlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4MTc1ODQxfDA&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['Enterprise IAM', 'Migration', 'Security'],
-      status: 'completed',
-      year: '2024',
-      duration: '8 months'
-    },
-    {
-      id: 2,
-      title: 'ReportIV Forecasting Dashboards',
-      category: 'Data Visualization',
-      description: 'Advanced analytics dashboards for financial forecasting with machine learning integration.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODE4NjE5M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['Analytics', 'ML Integration', 'Finance'],
-      status: 'completed',
-      year: '2024',
-      duration: '6 months'
-    },
-    {
-      id: 3,
-      title: 'SHIVA Virtual IAM Assistant',
-      category: 'AI/UX Design',
-      description: 'AI-powered virtual assistant for identity and access management with natural language processing.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMGFzc2lzdGFudCUyMGludGVyZmFjZXxlbnwxfHx8fDE3NTgyNDk0NjN8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['AI Assistant', 'NLP', 'Chatbot UI'],
-      status: 'in-progress',
-      year: '2024',
-      duration: 'Ongoing'
-    },
-    {
-      id: 4,
-      title: 'Kawach Rebranding',
-      category: 'Brand Design',
-      description: 'Complete rebranding and visual identity redesign for cybersecurity platform.',
-      image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGRlc2lnbiUyMGN5YmVyc2VjdXJpdHl8ZW58MXx8fHwxNzU4MjQ5NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['Branding', 'Visual Identity', 'Cybersecurity'],
-      status: 'completed',
-      year: '2023',
-      duration: '4 months'
-    },
-    {
-      id: 5,
-      title: 'Mobile Banking App',
-      category: 'Mobile UX',
-      description: 'User-centered design for next-generation mobile banking experience.',
-      image: 'https://images.unsplash.com/photo-1756576357697-13dfc5fff61c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBpbnRlcmZhY2UlMjBkZXNpZ258ZW58MXx8fHwxNzU4MjQ5NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['Mobile UX', 'FinTech', 'User Research'],
-      status: 'prototype',
-      year: '2024',
-      duration: '3 months'
-    },
-    {
-      id: 6,
-      title: 'E-commerce Platform',
-      category: 'Web Design',
-      description: 'Modern e-commerce platform with focus on accessibility and conversion optimization.',
-      image: 'https://images.unsplash.com/photo-1659035260002-11d486d6e9f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBhcHBsaWNhdGlvbiUyMGludGVyZmFjZXxlbnwxfHx8fDE3NTgxNzI5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['E-commerce', 'Accessibility', 'Conversion'],
-      status: 'completed',
-      year: '2023',
-      duration: '5 months'
-    },
-    {
-      id: 7,
-      title: 'Healthcare Portal',
-      category: 'Healthcare UX',
-      description: 'Patient-centered healthcare portal with telemedicine integration.',
-      image: 'https://images.unsplash.com/photo-1631815589968-fdb09131aca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwYXBwJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODI0OTQ2M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['Healthcare', 'Telemedicine', 'Accessibility'],
-      status: 'completed',
-      year: '2023',
-      duration: '6 months'
-    },
-    {
-      id: 8,
-      title: 'Learning Management System',
-      category: 'EdTech',
-      description: 'Modern LMS interface design with gamification and progress tracking.',
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlZHVjYXRpb24lMjBhcHAlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4MjQ5NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-      tags: ['EdTech', 'Gamification', 'Learning'],
-      status: 'prototype',
-      year: '2024',
-      duration: '4 months'
-    }
-  ];
+      {
+        id: 1,
+        title: 'Migration Framework',
+        category: 'Identity & Access Management',
+        description: 'Enterprise-level identity and access management framework migration from Oracle Access Manager to Ping Identity.',
+        image: setuOamPing,
+        tags: ['Enterprise IAM', 'Migration', 'Security'],
+        year: '2025',
+        duration: '1 year',
+        problem: "Legacy OAM systems needed migration to modern Ping infrastructure with zero downtime. Teams lacked visibility into migration progress, mapping accuracy, and assessment results, creating risks and delays.",
+                                process: "Designed IAM dashboards for migration visibility including reports, mappings, and assessments. Created UI/UX presentations and videos for stakeholder alignment. Developed backend connectors (DB, API, CLI utilities) to support seamless migration workflows.",
+                                solution: "Delivered comprehensive migration dashboard with real-time progress tracking, automated mapping validation, assessment reporting, and stakeholder communication tools. Integrated CLI utilities with intuitive UI for technical teams.",
+                                impact: "Reduced migration timeline by 90%, eliminated manual mapping errors, improved stakeholder communication through visual reports, and achieved 99.9% uptime during transition period.",
+                                color: "from-blue-500 to-indigo-600"
+      },
+      {
+        id: 2,
+        title: 'Resource Prediction Dashboards',
+        category: 'Data Visualization',
+        description: 'Advanced analytics dashboards for financial forecasting with machine learning integration.',
+        image: reportiv,
+        tags: ['Analytics', 'ML Integration', 'Finance'],
+        year: '2024',
+        duration: '2 months',
+                                problem: "Organizations needed to predict resource access patterns and identify anomalies before they became security risks. Existing monitoring was reactive rather than predictive, missing critical trends.",
+                                process: "Designed Grafana dashboards for forecasting resource access trends. Built predictive models using VAR and LSTM algorithms to forecast access anomalies and patterns. Focused on UI flows for presenting complex data science outputs clearly to stakeholders.",
+                                solution: "Created intuitive forecasting dashboard with predictive modeling integration, anomaly detection alerts, trend visualization, and automated reporting. Made complex ML outputs accessible to non-technical stakeholders through clear visual storytelling.",
+                                impact: "Predicted 85% of access anomalies before they occurred, reduced security incidents by 40%, enabled proactive resource planning, and improved compliance reporting accuracy by 60%.",
+                                color: "from-emerald-500 to-teal-600"
+      },
+      {
+        id: 3,
+        title: 'Virtual IAM Assistant',
+        category: ['AI', 'UX Design'],
+        description: 'AI-powered virtual assistant for identity and access management with natural language processing.',
+        image: shiva,
+        tags: ['AI Assistant', 'NLP', 'Chatbot UI'],
+        year: '2024',
+        duration: '1 month',
+        problem: "Complex IAM processes required extensive training and expertise. Users struggled with access requests, troubleshooting, and understanding security policies, leading to delays and support bottlenecks.",
+            process: "Designed conversational UI for virtual IAM assistant. Analyzed common user queries and pain points. Created intuitive chat flows that guide users through complex access management tasks with contextual help and automated suggestions.",
+            solution: "Developed virtual IAM assistant's conversational interface with natural language processing for IAM queries, guided workflows for access requests, automated troubleshooting suggestions, and integration with existing IAM systems for seamless task execution.",
+            impact: "Reduced support ticket volume by 65%, decreased average resolution time from 2 days to 30 minutes, improved user satisfaction scores to 4.8/5, and enabled 24/7 automated IAM support.",
+            color: "from-purple-500 to-pink-600"
+      },
+      {
+        id: 4,
+        title: 'Mobile Banking App',
+        category: 'Mobile UX',
+        description: 'User-centered design for next-generation mobile banking experience.',
+        image: oktaui,
+        tags: ['Mobile UX', 'FinTech', 'User Research'],
+        year: '2024',
+        duration: '3 months',
+                                problem: "The legacy banking interfaces were cluttered, inconsistent, and lacked trust indicators. Customers faced friction during login, MFA, and onboarding flows, leading to frustration, drop-offs, and reduced engagement.",
+                                process: "Conducted user journey mapping and heuristic evaluation of existing flows. Defined personas for retail and corporate customers to tailor experiences. Focused on accessibility, minimalism, and emotional design to instill trust while aligning with banking security requirements.",
+                                solution: "Designed a modern, user-centric banking app powered by Customer Identity & Access Management (CIAM). Created seamless authentication experiences with clean UI, adaptive MFA screens, and contextual feedback. The interface emphasized trust through micro-interactions, clear messaging, and visual consistency across devices.",
+                                impact: "Reduced user drop-offs during login and onboarding by 40%, enhanced customer trust with transparent security flows, improved task completion rates by 55%, and elevated the overall digital experience — making secure banking feel effortless.",
+                                color: "from-blue-500 to-indigo-600"
+      },
+      {
+        id: 5,
+        title: 'Saas Enterprise Platform',
+        category: 'Web Design',
+        description: 'Modern e-commerce platform with focus on accessibility and conversion optimization.',
+        image: envision,
+        tags: ['E-commerce', 'Accessibility', 'Conversion'],
+        year: '2024',
+        duration: '5 months',
+                                problem: "Enterprise administrators struggled with fragmented dashboards and disjointed data views across multiple IAM and application monitoring tools. The lack of a unified visualization platform made it difficult to gain actionable insights, compare performance metrics, or identify cross-system dependencies quickly.",
+                                process: "Led stakeholder workshops to understand user journeys, business goals, and pain points across security, operations, and management teams. Created information architecture maps and low-fidelity prototypes focusing on data clarity, scalability, and consistency. Iteratively tested wireframes with users to refine navigation and interaction models for complex IAM datasets.",
+                                solution: "Designed a modular enterprise platform that consolidates IAM analytics, system health, and application insights into one cohesive interface. Built a clean, role-based dashboard system emphasizing readability, responsiveness, and real-time visualization. Applied a minimalist design system with consistent iconography, typography, and color logic to enhance usability and reduce cognitive load.",
+                                impact: "Increased user efficiency in monitoring and analysis tasks by 65%, reduced dashboard switching time by 50%, improved data comprehension across roles, and established a scalable design framework adaptable to future enterprise modules — positioning it as a unified command center for enterprise visibility.",
+                                color: "from-orange-500 to-red-600"
+
+      },
+      {
+        id: 6,
+        title: 'Healthcare Portal',
+        category: 'Healthcare UX',
+        description: 'Patient-centered healthcare portal with telemedicine integration.',
+        image: 'https://images.unsplash.com/photo-1631815589968-fdb09131aca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwYXBwJTIwaW50ZXJmYWNlfGVufDF8fHx8MTc1ODI0OTQ2M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+        tags: ['Healthcare', 'Telemedicine', 'Accessibility'],
+        year: '2023',
+        duration: '6 months',
+        problem: "Patients and healthcare providers faced fragmented communication, confusing navigation, and limited access to medical records. The absence of a unified, accessible digital platform led to appointment delays, poor engagement, and reduced trust in virtual care systems.",
+        process: "Researched patient and clinician workflows through interviews and journey mapping to identify friction points. Designed personas for different patient groups, including elderly and differently-abled users, to ensure inclusive accessibility. Focused on simplifying appointment booking, consultation flows, and medical data visualization while ensuring compliance with healthcare privacy standards (HIPAA-like guidelines).",
+        solution: "Designed a patient-centered healthcare portal integrating telemedicine, digital prescriptions, and secure record management. Created intuitive dashboards for patients and doctors, optimized for both desktop and mobile. Implemented accessibility-first UI with large touch targets, clear color contrast, and guided interactions to simplify navigation and improve confidence in digital healthcare.",
+        impact: "Enhanced patient engagement and appointment completion rates by 50%, reduced onboarding time for new users by 40%, and improved satisfaction scores due to clearer navigation and inclusive accessibility design — transforming digital healthcare into a more empathetic, human-centered experience.",
+        color: "from-orange-500 to-red-600"
+      },
+      {
+        id: 7,
+        title: 'Learning Management System',
+        category: 'EdTech',
+        description: 'Modern LMS interface design with gamification and progress tracking.',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlZHVjYXRpb24lMjBhcHAlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4MjQ5NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        tags: ['EdTech', 'Gamification', 'Learning'],
+        year: '2023',
+        duration: '4 months',
+        problem: "Students and instructors found existing LMS platforms overwhelming, with poor progress visibility and low motivation to complete courses. The interface lacked engagement, structure, and intuitive flow — leading to reduced participation and completion rates.",
+        process: "Conducted usability tests with students and educators to understand engagement barriers. Designed wireframes emphasizing simplicity and flow, followed by UI explorations that incorporated visual hierarchy, feedback loops, and reward mechanics. Focused on integrating gamification principles — such as progress tracking, badges, and leaderboards — without cluttering the experience.",
+        solution: "Developed a modern Learning Management System interface that combined clean design with gamified learning. Designed intuitive dashboards showing progress visually, introduced achievement badges and progress rings, and streamlined course navigation for faster access to lessons and assessments.",
+        impact: "Increased learner engagement by 65%, boosted course completion rates by 45%, and improved platform usability scores through simplified interactions and motivating visual feedback — turning learning into an enjoyable, goal-driven experience.",
+        color: "from-orange-500 to-red-600"
+      }
+    ];
 
   const categories = ['all', 'IAM Framework', 'Data Visualization', 'AI/UX Design', 'Brand Design', 'Mobile UX', 'Web Design', 'Healthcare UX', 'EdTech'];
 
@@ -120,14 +169,8 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
     return matchesSearch && matchesCategory;
   });
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed': return 'bg-green-100 text-green-800 bg-green-900/20 text-green-400';
-      case 'in-progress': return 'bg-blue-100 text-blue-800 bg-blue-900/20 text-blue-400';
-      case 'prototype': return 'bg-orange-100 text-orange-800 bg-orange-900/20 text-orange-400';
-      default: return 'bg-gray-100 text-gray-800 bg-gray-900/20 text-gray-400';
-    }
-  };
+
+
 
   return (
     <div className="min-h-screen bg-background text-foreground pt-20">
@@ -167,7 +210,7 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                   className="pl-10"
                 />
               </div>
-              
+
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                 <SelectTrigger className="w-full sm:w-48">
                   <SelectValue placeholder="All Categories" />
@@ -230,17 +273,13 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                           alt={project.title}
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                        <div className="absolute top-4 left-4">
-                          <Badge className={getStatusColor(project.status)}>
-                            {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
-                          </Badge>
-                        </div>
+
                         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                           <Badge variant="secondary">
                             {project.year}
                           </Badge>
                         </div>
-                        
+
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
                           <Button
@@ -248,24 +287,18 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                             variant="secondary"
                             onClick={() => {
                               toast.success(`Viewing ${project.title} details...`);
+                              const caseStudy = mapProjectToCaseStudy(project);
+                              onViewDetails(caseStudy);
+
                             }}
                           >
                             <Eye className="h-4 w-4 mr-2" />
                             View
                           </Button>
-                          <Button
-                            size="sm"
-                            onClick={() => {
-                              toast.success(`Opening ${project.title} demo...`);
-                              onViewDemo(project);
-                            }}
-                          >
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Demo
-                          </Button>
+
                         </div>
                       </div>
-                      
+
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-2">
                           <Badge variant="outline" className="text-xs">
@@ -275,15 +308,15 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                             {project.duration}
                           </span>
                         </div>
-                        
+
                         <h3 className="font-bold mb-2 line-clamp-1">
                           {project.title}
                         </h3>
-                        
+
                         <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
                           {project.description}
                         </p>
-                        
+
                         <div className="flex flex-wrap gap-1 mb-4">
                           {project.tags.slice(0, 3).map((tag) => (
                             <Badge key={tag} variant="secondary" className="text-xs">
@@ -320,13 +353,9 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                             alt={project.title}
                             className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
                           />
-                          <div className="absolute top-2 left-2">
-                            <Badge className={getStatusColor(project.status)} size="sm">
-                              {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
-                            </Badge>
-                          </div>
+
                         </div>
-                        
+
                         <div className="md:col-span-2">
                           <div className="flex items-center gap-2 mb-2">
                             <Badge variant="outline" className="text-xs">
@@ -336,12 +365,12 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                               {project.year}
                             </Badge>
                           </div>
-                          
+
                           <h3 className="font-bold mb-2">{project.title}</h3>
                           <p className="text-sm text-muted-foreground mb-3">
                             {project.description}
                           </p>
-                          
+
                           <div className="flex flex-wrap gap-1">
                             {project.tags.map((tag) => (
                               <Badge key={tag} variant="secondary" className="text-xs">
@@ -350,7 +379,7 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                             ))}
                           </div>
                         </div>
-                        
+
                         <div className="flex flex-col gap-2">
                           <p className="text-xs text-muted-foreground mb-2">
                             Duration: {project.duration}
@@ -361,20 +390,14 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                               variant="outline"
                               onClick={() => {
                                 toast.success(`Viewing ${project.title} details...`);
+                                const caseStudy = mapProjectToCaseStudy(project);
+                                onViewDetails(caseStudy);
                               }}
                             >
                               <Eye className="h-4 w-4 mr-2" />
                               View
                             </Button>
-                            <Button
-                              size="sm"
-                              onClick={() => {
-                                toast.success(`Opening ${project.title} demo...`);
-                                onViewDemo(project);
-                              }}
-                            >
-                              <ExternalLink className="h-4 w-4" />
-                            </Button>
+
                           </div>
                         </div>
                       </div>
@@ -403,7 +426,7 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                 <Button
                   size="lg"
                   onClick={() => {
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('getintouch')?.scrollIntoView({ behavior: 'smooth' });
                     onBack();
                     toast.success("Let's start a conversation!");
                   }}
@@ -411,15 +434,7 @@ export function AllProjects({ onBack, onViewDemo }: AllProjectsProps) {
                 >
                   Start a Project
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => {
-                    toast.success("Downloading complete portfolio...");
-                  }}
-                >
-                  Download Portfolio
-                </Button>
+
               </div>
             </CardContent>
           </Card>

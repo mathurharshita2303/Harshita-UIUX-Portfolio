@@ -4,24 +4,11 @@ import { Badge } from './ui/badge';
 import { ExternalLink, Eye } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { toast } from "sonner@2.0.3";
+import setuOamPing from '../assets/projects/setu-oam-ping.jpg';
 
 const showcaseProjects = [
   {
     id: 1,
-    title: "Kawach Design System",
-    category: "Design System",
-    image: "https://images.unsplash.com/photo-1715528233539-5fe70a4e0d71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBza2V0Y2hlcyUyMHdpcmVmcmFtZXxlbnwxfHx8fDE3NTgyNDk0NjJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Complete rebranding and design system for IAM security product",
-    tags: ["Figma", "Branding"],
-    problem: "Kawach needed modern brand identity to compete in the IAM market. Multiple design projects required cohesive approach across mobile and enterprise platforms while maintaining security-first user experience.",
-        process: "Led complete Kawach rebranding with modernized design system. Designed Okta mobile app concept with mobile-first secure login and MFA flows. Created Envision enterprise SaaS dashboard. Focused on accessibility-first UI and biometric integration.",
-        solution: "Delivered comprehensive rebrand for Kawach with new visual identity, design system, and marketing materials. Created mobile-optimized authentication flows for Okta app and sophisticated enterprise dashboard for Envision platform.",
-        impact: "Increased Kawach brand recognition by 200%, improved mobile app user engagement by 75%, enhanced enterprise dashboard usability scores, and established consistent design language across all platforms.",
-        color: "from-orange-500 to-red-600"
-
-  },
-  {
-    id: 2,
     title: "Envision Enterprise Platform",
     category: "Enterprise SaaS",
     image: "https://images.unsplash.com/photo-1659035260002-11d486d6e9f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBhcHBsaWNhdGlvbiUyMGludGVyZmFjZXxlbnwxfHx8fDE3NTgxNzI5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -34,7 +21,7 @@ const showcaseProjects = [
     color: "from-orange-500 to-red-600"
   },
   {
-    id: 3,
+    id: 2,
     title: "ReportIV - Forecasting Analytics",
     category: "Data Visualization",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODE4NjE5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -47,7 +34,7 @@ const showcaseProjects = [
     color: "from-emerald-500 to-teal-600"
   },
   {
-    id: 4,
+    id: 3,
     title: "Okta Mobile App Concept",
     category: "Mobile App",
     image: "https://images.unsplash.com/photo-1756576357697-13dfc5fff61c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBpbnRlcmZhY2UlMjBkZXNpZ258ZW58MXx8fHwxNzU4MjQ5NDYzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -61,10 +48,10 @@ const showcaseProjects = [
 
   },
   {
-    id: 5,
+    id: 4,
     title: "SETU Migration Portal",
     category: "Enterprise IAM",
-    image: "https://images.unsplash.com/photo-1732203971761-e9d4a6f5e93f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkYXNoYm9hcmQlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU4MTc1ODQxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: setuOamPing,
     description: "OAM to Ping migration interface with comprehensive reporting",
     tags: ["IAM", "Migration"],
     problem: "Legacy OAM systems needed migration to modern Ping infrastructure with zero downtime. Teams lacked visibility into migration progress, mapping accuracy, and assessment results, creating risks and delays.",
@@ -74,7 +61,7 @@ const showcaseProjects = [
     color: "from-blue-500 to-indigo-600"
   },
   {
-    id: 6,
+    id: 5,
     title: "SHIVA AI Assistant",
     category: "AI Interface",
     image: "https://images.unsplash.com/photo-1744782211816-c5224434614f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwdmlzdWFsaXphdGlvbiUyMGNoYXJ0c3xlbnwxfHx8fDE3NTgyNDI2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",

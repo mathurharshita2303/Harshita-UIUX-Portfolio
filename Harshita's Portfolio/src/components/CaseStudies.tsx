@@ -45,19 +45,6 @@ const caseStudies = [
     solution: "Developed SHIVA's conversational interface with natural language processing for IAM queries, guided workflows for access requests, automated troubleshooting suggestions, and integration with existing IAM systems for seamless task execution.",
     impact: "Reduced support ticket volume by 65%, decreased average resolution time from 2 days to 30 minutes, improved user satisfaction scores to 4.8/5, and enabled 24/7 automated IAM support.",
     color: "from-purple-500 to-pink-600"
-  },
-  {
-    id: 4,
-    title: "Kawach Rebranding & UI/UX Projects",
-    subtitle: "Multi-Platform Design Excellence",
-    description: "Complete rebranding of IAM security product plus mobile-first designs for Okta App and Envision platform",
-    image: "https://images.unsplash.com/photo-1629697776809-f37ceac39e77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBtb2NrdXB8ZW58MXx8fHwxNzU4MjA2NDM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    tags: ["Rebranding", "Mobile App", "Enterprise SaaS", "Design System"],
-    problem: "Kawach needed modern brand identity to compete in the IAM market. Multiple design projects required cohesive approach across mobile and enterprise platforms while maintaining security-first user experience.",
-    process: "Led complete Kawach rebranding with modernized design system. Designed Okta mobile app concept with mobile-first secure login and MFA flows. Created Envision enterprise SaaS dashboard. Focused on accessibility-first UI and biometric integration.",
-    solution: "Delivered comprehensive rebrand for Kawach with new visual identity, design system, and marketing materials. Created mobile-optimized authentication flows for Okta app and sophisticated enterprise dashboard for Envision platform.",
-    impact: "Increased Kawach brand recognition by 200%, improved mobile app user engagement by 75%, enhanced enterprise dashboard usability scores, and established consistent design language across all platforms.",
-    color: "from-orange-500 to-red-600"
   }
 ];
 
