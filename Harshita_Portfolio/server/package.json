@@ -16,7 +16,8 @@
     "mongoose": "^7.0.3",
     "node-fetch": "^2.6.7",
     "nodemailer": "^7.0.9",
-    "socks-proxy-agent": "^8.0.5"
+    "socks-proxy-agent": "^8.0.5",
+    "socks": "2.8.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
