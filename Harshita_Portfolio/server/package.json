@@ -7,8 +7,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start:dev": "nodemon server.js",
-    "postinstall": "npm rebuild socks --force"
+    "start:dev": "nodemon server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,7 +16,7 @@
     "mongoose": "^7.0.3",
     "node-fetch": "^2.6.7",
     "nodemailer": "^7.0.9",
-    "socks": "^2.8.7",
+    "socks": "^2.7.1",
     "socks-proxy-agent": "^8.0.5"
   },
   "devDependencies": {
