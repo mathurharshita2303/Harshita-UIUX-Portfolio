@@ -37,10 +37,10 @@ app.use('/api/contact', require('./routes/contactRoutes'));
 app.use('/api/feedback', require('./routes/feedbackRoutes'));
 app.use('/api/analytics', require('./routes/analyticsRoutes'));
 
-// ✅ Health check for Railway auto-wake
+// ✅ Health check for auto-wake
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
-// ✅ Serve frontend only in production (optional)
+// ✅ Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
   const clientBuildPath = path.join(__dirname, '..', 'dist');
   if (fs.existsSync(clientBuildPath)) {

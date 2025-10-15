@@ -1,17 +1,15 @@
 const mongoose = require('mongoose');
 
-const connectDB = async (uri) => {
+const connectDB = async (mongoURI) => {
   try {
-    if (!uri) {
-      throw new Error('MONGO_URI not provided');
-    }
-    await mongoose.connect(uri, {
+    await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     });
     console.log('✅ MongoDB connected');
-  } catch (error) {
-    console.error('❌ MongoDB connection failed:', error.message);
+  } catch (err) {
+    console.error('❌ MongoDB connection error:', err.message);
+    process.exit(1);
   }
 };
 
