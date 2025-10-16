@@ -13,10 +13,11 @@ const app = express();
 app.use(express.json());
 
 // Allowed origins
-const defaultOrigins = [
+const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://harshitauiuxportfolio.netlify.app'
+  'https://harshitauiuxportfolio.netlify.app',
+  'https://harshita-portfolio-server.onrender.com'
 ];
 
 let allowedOrigins = defaultOrigins;
