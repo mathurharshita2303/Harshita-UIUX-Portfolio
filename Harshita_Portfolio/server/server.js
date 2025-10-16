@@ -47,8 +47,7 @@ app.use('/api/feedback', require('./routes/feedbackRoutes'));
 
 // ✅ Serve frontend (no /dist, serve directly from folder)
 if (process.env.NODE_ENV === 'production') {
-  const clientBuildPath = path.join(__dirname, '..', 'Harshita_Portfolio', 'Harshita_Portfolio');
-
+  const clientBuildPath = path.join(__dirname, '..', 'build');
   if (fs.existsSync(clientBuildPath)) {
     app.use(express.static(clientBuildPath));
     app.get('*', (req, res) => {
@@ -58,6 +57,7 @@ if (process.env.NODE_ENV === 'production') {
     console.warn('⚠️ Client build not found at', clientBuildPath);
   }
 }
+
 
 const PORT = process.env.PORT || 5002;
 const server = app.listen(PORT, () =>
