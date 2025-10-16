@@ -7,6 +7,7 @@ import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Star, MessageSquare, X } from 'lucide-react';
 import { toast } from "sonner@2.0.3";
+import API_BASE from "../config";
 
 interface UserFeedbackFormProps {
   onClose: () => void;
@@ -44,7 +45,7 @@ export function UserFeedbackForm({ onClose, isOpen }: UserFeedbackFormProps) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5002/api/feedback", {
+      const response = await fetch("${API_BASE}/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

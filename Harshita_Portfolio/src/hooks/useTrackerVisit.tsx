@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import API_BASE from "../config";
 
 const getLocation = async (): Promise<{ state: string; country: string }> => {
   // Try browser geolocation first
@@ -40,7 +41,7 @@ export function useTrackVisit(page: string) {
       const location = await getLocation();
 
       try {
-        await fetch('http://localhost:5002/api/analytics/visit', {
+        await fetch('${API_BASE}/api/analytics/visit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

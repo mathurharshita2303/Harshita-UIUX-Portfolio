@@ -16,6 +16,7 @@ import {
   Globe
 } from "lucide-react";
 import { useAnalytics } from "../context/AnalyticsContext";
+import API_BASE from "../config";
 
 // --- Utility Functions ---
 const formatDistanceToNow = (date: Date, options: { addSuffix?: boolean } = {}) => {
@@ -92,7 +93,7 @@ export function AnalyticsDashboard({ onBack }: AnalyticsDashboardProps) {
 
       // Only send POST if backend route exists (or comment for now)
       try {
-        await fetch("http://localhost:5002/api/analytics/update-location", {
+        await fetch("${API_BASE}/api/analytics/update-location", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(loc),
@@ -112,7 +113,7 @@ export function AnalyticsDashboard({ onBack }: AnalyticsDashboardProps) {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const res = await fetch("http://localhost:5002/api/feedback");
+        const res = await fetch("${API_BASE}/api/feedback");
         const data = await res.json();
 
         // calculate average rating

@@ -8,6 +8,7 @@ import { Mail, Linkedin, MapPin, Phone, Send, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from "sonner@2.0.3";
 import { useAnalytics } from "../context/AnalyticsContext";
+import API_BASE from "../config";
 
 
 export function Contact() {
@@ -82,7 +83,7 @@ export function Contact() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5002/api/contact", {
+      const response = await fetch("${API_BASE}/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),  // ✅ send subject too
