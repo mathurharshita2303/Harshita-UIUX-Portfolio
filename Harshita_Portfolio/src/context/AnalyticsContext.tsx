@@ -107,7 +107,7 @@ export const AnalyticsProvider = ({ children }: { children: ReactNode }) => {
   const trackPageVisit = useCallback(async (page: string) => {
     try {
       const location = userLocation || (await requestLocation());
-      await fetch(`${API_BASE}/analytics/visit`, {
+      await fetch(`${API_BASE}/api/analytics/visit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -174,7 +174,7 @@ export const AnalyticsProvider = ({ children }: { children: ReactNode }) => {
   const updatePageDuration = useCallback(async (page: string, startTime: number) => {
     try {
       const location = userLocation || (await requestLocation());
-      await fetch(`${API_BASE}/analytics/visit`, {
+      await fetch(`${API_BASE}/api/analytics/visit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
