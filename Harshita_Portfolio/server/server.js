@@ -45,10 +45,12 @@ app.use('/api/analytics', require('./routes/analyticsRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 app.use('/api/feedback', require('./routes/feedbackRoutes'));
 
-// ✅ Serve frontend (no /dist, serve directly from folder)
+// ✅ Serve frontend from /build (not /dist)
 if (process.env.NODE_ENV === 'production') {
   const clientBuildPath = path.join(__dirname, '..', 'build');
+
   if (fs.existsSync(clientBuildPath)) {
+    console.log('✅ Serving frontend from', clientBuildPath);
     app.use(express.static(clientBuildPath));
     app.get('*', (req, res) => {
       res.sendFile(path.join(clientBuildPath, 'index.html'));
@@ -57,7 +59,6 @@ if (process.env.NODE_ENV === 'production') {
     console.warn('⚠️ Client build not found at', clientBuildPath);
   }
 }
-
 
 const PORT = process.env.PORT || 5002;
 const server = app.listen(PORT, () =>
