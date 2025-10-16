@@ -1,7 +1,8 @@
 [build]
-base = "."
+base = "Harshita_Portfolio"
 publish = "build"
 command = "npm run build"
+
 
 [[redirects]]
 from = "/*"
