@@ -4,16 +4,15 @@ const path = require('path');
 const fs = require('fs');
 const connectDB = require('./config/db');
 
-// Load .env only in non-production to avoid accidentally using local secrets on Render
+// Load .env only in non-production
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
 const app = express();
-
 app.use(express.json());
 
-// Build allowed origins from env or sensible defaults
+// Allowed origins
 const defaultOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
@@ -22,39 +21,41 @@ const defaultOrigins = [
 
 let allowedOrigins = defaultOrigins;
 if (process.env.ALLOWED_ORIGINS) {
-  allowedOrigins = process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim()).filter(Boolean).concat(defaultOrigins);
+  allowedOrigins = process.env.ALLOWED_ORIGINS.split(',')
+    .map(s => s.trim())
+    .filter(Boolean)
+    .concat(defaultOrigins);
 }
 
-// CORS middleware that allows requests from allowed origins or when origin is missing (server-to-server)
+// CORS middleware
 app.use(cors({
-  origin: function(origin, callback){
+  origin: function (origin, callback) {
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      return callback(null, true);
-    }
-    // allow subdomains of render.com (optional)
+    if (allowedOrigins.includes(origin)) return callback(null, true);
     if (/\.render\.com$/.test(new URL(origin).hostname)) return callback(null, true);
     return callback(new Error('CORS policy: Origin not allowed'), false);
   }
 }));
 
-// Connect to MongoDB (uses process.env.MONGO_URI)
+// Connect DB
 connectDB(process.env.MONGO_URI);
 
-// require routes
+// Routes
 app.use('/api/analytics', require('./routes/analyticsRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
+app.use('/api/feedback', require('./routes/feedbackRoutes'));
 
-// Serve client build when present (works when frontend build is placed in parent dist/)
+// ✅ Serve frontend (no /dist, serve directly from folder)
 if (process.env.NODE_ENV === 'production') {
-  const clientBuildPath = path.join(__dirname, '..', 'dist');
+  const clientBuildPath = path.join(__dirname, '..', 'Harshita_Portfolio', 'Harshita_Portfolio');
+
   if (fs.existsSync(clientBuildPath)) {
     app.use(express.static(clientBuildPath));
     app.get('*', (req, res) => {
       res.sendFile(path.join(clientBuildPath, 'index.html'));
     });
   } else {
-    console.warn('Client build not found at', clientBuildPath);
+    console.warn('⚠️ Client build not found at', clientBuildPath);
   }
 }
 
@@ -70,7 +71,6 @@ const shutdown = (signal) => {
     console.log('HTTP server closed.');
     process.exit(0);
   });
-  // Force exit after timeout
   setTimeout(() => {
     console.error('Forcing shutdown.');
     process.exit(1);
