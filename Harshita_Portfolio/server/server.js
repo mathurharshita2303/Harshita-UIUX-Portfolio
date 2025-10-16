@@ -13,40 +13,44 @@ const app = express();
 app.use(express.json());
 
 // Allowed origins
-const allowedOrigins = [
+const defaultOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   'https://harshitauiuxportfolio.netlify.app',
   'https://harshita-portfolio-server.onrender.com'
 ];
 
-let allowedOrigins = defaultOrigins;
+let allowedOrigins = [...defaultOrigins];
 if (process.env.ALLOWED_ORIGINS) {
-  allowedOrigins = process.env.ALLOWED_ORIGINS.split(',')
-    .map(s => s.trim())
-    .filter(Boolean)
-    .concat(defaultOrigins);
+  allowedOrigins = allowedOrigins.concat(
+    process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim()).filter(Boolean)
+  );
 }
 
-// CORS middleware
-app.use(cors({
+// ✅ CORS middleware
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
     if (/\.render\.com$/.test(new URL(origin).hostname)) return callback(null, true);
-    return callback(new Error('CORS policy: Origin not allowed'), false);
-  }
-}));
+    return callback(new Error(`CORS policy: Origin ${origin} not allowed`), false);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Connect DB
 connectDB(process.env.MONGO_URI);
 
-// Routes
+// API routes
 app.use('/api/analytics', require('./routes/analyticsRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
 app.use('/api/feedback', require('./routes/feedbackRoutes'));
 
-// ✅ Serve frontend from /build (not /dist)
+// ✅ Serve frontend (after API routes)
 if (process.env.NODE_ENV === 'production') {
   const clientBuildPath = path.join(__dirname, '..', 'build');
 
