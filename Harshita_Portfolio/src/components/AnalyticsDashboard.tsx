@@ -93,7 +93,7 @@ export function AnalyticsDashboard({ onBack }: AnalyticsDashboardProps) {
 
       // Only send POST if backend route exists (or comment for now)
       try {
-        await fetch("${API_BASE}/api/analytics/update-location", {
+        await fetch(`${API_BASE}/api/analytics/update-location`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(loc),
@@ -113,7 +113,7 @@ export function AnalyticsDashboard({ onBack }: AnalyticsDashboardProps) {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const res = await fetch("${API_BASE}/api/feedback");
+        const res = await fetch(`${API_BASE}/api/feedback`);
         const data = await res.json();
 
         // calculate average rating

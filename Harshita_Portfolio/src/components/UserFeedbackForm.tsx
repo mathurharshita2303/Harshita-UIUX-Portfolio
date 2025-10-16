@@ -45,7 +45,7 @@ export function UserFeedbackForm({ onClose, isOpen }: UserFeedbackFormProps) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("${API_BASE}/api/feedback", {
+      const response = await fetch(`${API_BASE}/api/feedback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

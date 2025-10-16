@@ -55,7 +55,7 @@ export const AnalyticsProvider = ({ children }: { children: ReactNode }) => {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
   const [userLocation, setUserLocation] = useState<string>("Unknown");
 
-  const API_BASE = import.meta.env.VITE_API_URL || "${API_BASE}/api";
+  const API_BASE = import.meta.env.VITE_API_URL || `${API_BASE}/api`;
 
   // --- Get browser info ---
   const getBrowserInfo = () => {
