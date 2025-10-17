@@ -84,7 +84,7 @@ export const AnalyticsProvider = ({ children }: { children: ReactNode }) => {
   // --- Fetch analytics summary ---
   const fetchAnalytics = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/analytics/summary`);
+      const res = await fetch(`${API_BASE}/api/analytics/summary`);
       const json = await res.json();
       if (!json.success) return;
 
@@ -126,7 +126,7 @@ export const AnalyticsProvider = ({ children }: { children: ReactNode }) => {
   const trackContactSubmission = useCallback(async (data: ContactSubmission) => {
     try {
       const location = userLocation || (await requestLocation());
-      await fetch(`${API_BASE}/contact`, {
+      await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, location, timestamp: Date.now() }),
@@ -152,7 +152,7 @@ export const AnalyticsProvider = ({ children }: { children: ReactNode }) => {
         id: Date.now().toString(),
       };
 
-      const res = await fetch(`${API_BASE}/feedback`, {
+      const res = await fetch(`${API_BASE}/api/feedback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newFeedback),
